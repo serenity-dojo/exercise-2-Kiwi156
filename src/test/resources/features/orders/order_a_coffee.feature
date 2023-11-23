@@ -10,4 +10,11 @@ Feature: Order a coffee
     Then Barry should receive the order
     And Barry should know that the order is Urgent
 
+  Scenario: Buyer orders a coffee when they are getting close to the coffee shop
+    Given Cathy is 300 metres from the coffee shop
+    When Cathy orders a large cappuccino
+    Then Barry should receive the order
+    And Barry should know that the order is Normal
+
+
 
