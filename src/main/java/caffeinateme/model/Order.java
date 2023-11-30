@@ -6,10 +6,10 @@ public class Order {
     private final int quantity;
     private final String product;
     private final Customer customer;
-    private final OrderStatus status;
+    private OrderStatus status;
 
     public Order(int quantity, String product, Customer customer) {
-        this(quantity,product, customer, OrderStatus.Normal);
+        this(quantity, product, customer, OrderStatus.Normal);
     }
 
     public Order(int quantity, String product, Customer customer, OrderStatus status) {
@@ -19,13 +19,18 @@ public class Order {
         this.status = status;
     }
 
+
     public Order withStatus(OrderStatus status) {
-        return new Order(quantity,product,customer, status);
+        return new Order(quantity, product, customer, status);
     }
+
     public OrderStatus getStatus() {
         return status;
     }
 
+    public void updateStatusTo(OrderStatus status){
+        this.status = status;
+    }
     public int getQuantity() {
         return quantity;
     }
@@ -55,6 +60,8 @@ public class Order {
         public Order forCustomer(Customer customerName) {
             return new Order(quantity, product, customerName);
         }
+
+
     }
 
     @Override
@@ -71,4 +78,9 @@ public class Order {
     public int hashCode() {
         return Objects.hash(quantity, product, customer);
     }
+
 }
+
+
+
+

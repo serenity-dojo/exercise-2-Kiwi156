@@ -31,10 +31,14 @@ public class OrderCoffeeSteps {
     //   this.order = Order.of(1, orderedProduct).forCustomer(cathy);
     // cathy.placesAnOrderFor(order).at(coffeeShop);
     // }
-    @When("Cathy orders a/an {string}")
+    @When("^Cathy (?:orders|has ordered) an? (.*)$")
     public void cathy_orders_a(String orderedProduct) {
         this.order = Order.of(1, orderedProduct).forCustomer(cathy);
         cathy.placesAnOrderFor(order).at(coffeeShop);
+    }
+    @And("Cathy is {int} minutes away")
+    public void customerIsMinutesAway(int etaMinutes){
+        coffeeShop.setCustomerETA(cathy, etaMinutes);
     }
 
     @Then("Barry should receive the order")
