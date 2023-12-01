@@ -6,6 +6,14 @@ public class CoffeeShop {
 
     private Queue<Order> orders = new LinkedList<>();
 
+    private final ProductCatalog productCatalog;
+
+    public CoffeeShop(ProductCatalog productCatalog) {
+        this.productCatalog = productCatalog;
+    }
+
+
+
     public void placeOrder(Order order, Float distanceInMetres) {
         if (distanceInMetres <= 200) {
             order = order.withStatus(OrderStatus.Urgent);

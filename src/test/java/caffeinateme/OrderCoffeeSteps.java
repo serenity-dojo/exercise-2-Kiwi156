@@ -17,7 +17,7 @@ public class OrderCoffeeSteps {
 
 
     Customer cathy = Customer.named("Cathy");
-    CoffeeShop coffeeShop = new CoffeeShop();
+    CoffeeShop coffeeShop;
     Order order;
 
     @Given("Cathy is {float} metre(s) from the coffee shop")
