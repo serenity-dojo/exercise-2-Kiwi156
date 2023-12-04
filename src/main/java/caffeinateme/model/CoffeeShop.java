@@ -4,14 +4,16 @@ import java.util.*;
 
 public class CoffeeShop {
 
-    private Queue<Order> orders = new LinkedList<>();
-
-    private final ProductCatalog productCatalog;
-
-    public CoffeeShop(ProductCatalog productCatalog) {
-        this.productCatalog = productCatalog;
+    public CoffeeShop(Queue<Order> orders) {
+        this.orders = orders;
     }
 
+    private Queue<Order> orders = new LinkedList<>();
+
+    public CoffeeShop() {
+
+
+    }
 
 
     public void placeOrder(Order order, Float distanceInMetres) {
@@ -29,6 +31,8 @@ public class CoffeeShop {
         return orders.stream()
                 .filter(order -> order.getCustomer().equals(customer))
                 .findFirst();
+
+
     }
     public void setCustomerETA(Customer customer, int etaInMinutes) {
         getOrderFor(customer).ifPresent(

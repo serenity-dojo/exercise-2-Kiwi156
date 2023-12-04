@@ -3,7 +3,7 @@ package caffeinateme.model;
 import java.util.Objects;
 
 public class Customer {
-    private String name;
+    private static String name;
     private Float distanceInMetres = 10000F;
 
     public Customer(String name) {
@@ -22,34 +22,34 @@ public class Customer {
         this.distanceInMetres = distanceInMetres;
     }
 
-    public CustomerOrderBuilder placesAnOrderFor(Order order) {
-        return new CustomerOrderBuilder(order, distanceInMetres);
+     public CustomerOrderBuilder placesAnOrderFor(Order order) {
+         return new CustomerOrderBuilder(order, distanceInMetres);
     }
 
     public static class CustomerOrderBuilder {
-        private Order order;
-        private final Float distanceInMetres;
+    private Order order;
+    private final Float distanceInMetres;
 
-        public CustomerOrderBuilder(Order order, Float distanceInMetres) {
+
+    public CustomerOrderBuilder(Order order, Float distanceInMetres) {
             this.order = order;
             this.distanceInMetres = distanceInMetres;
         }
 
-        public void at(CoffeeShop coffeeShop) {
-            coffeeShop.placeOrder(order, distanceInMetres);
+       public void at(CoffeeShop coffeeShop) {
+        coffeeShop.placeOrder(order, distanceInMetres);
         }
-    }
+      @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Customer customer = (Customer) o;
+            return Objects.equals(name, customer.name);
+        }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(name, customer.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
+        }
     }
 }
